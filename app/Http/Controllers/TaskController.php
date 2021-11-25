@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +48,7 @@ class TaskController extends Controller
             'user_id' => Auth::id()
         ]);
     
-        return redirect('tasks/'.$task->id);
+        return redirect()->route('tasks.index');
     }
     
     /**
