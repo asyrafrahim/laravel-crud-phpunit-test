@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index']);
 Route::get('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'show']);
+Route::get('/tasks/create',[App\Http\Controllers\TaskController::class, 'create']);
 Route::post('/tasks/create',[App\Http\Controllers\TaskController::class, 'store']);
