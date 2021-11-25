@@ -101,6 +101,10 @@ class TaskController extends Controller
     */
     public function destroy(Task $task)
     {
-        //
+        $this->authorize('update', $task);
+        
+        $task->delete();
+        
+        return redirect()->route('tasks.index');
     }
 }
