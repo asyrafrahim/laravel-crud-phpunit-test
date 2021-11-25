@@ -111,4 +111,17 @@ class TasksTest extends TestCase
         $response->assertStatus(403);
     }
     
+    /** @test */
+    public function authorized_user_can_delete_the_task(){
+        
+        //Given we have a signed in user
+        $this->actingAs(User::factory()->create());
+        //And a task which is created by the user
+        $task = Task::factory()->create(['user_id' => Auth::id()]);
+        //When the user hit's the endpoint to delete the task
+        $this->delete('tasks/'.$task->id);
+        //The task should be deleted from the database.
+        $this->assertDatabaseMissing('tasks',['id'=> $task->id]);
+        
+    }
 }
