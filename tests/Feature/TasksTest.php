@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TasksTest extends TestCase
@@ -80,5 +81,20 @@ class TasksTest extends TestCase
         
         $this->post('/tasks/create',$task->toArray())
         ->assertStatus(405);
+    }
+    
+    /** @test */
+    public function authorized_user_can_update_the_task(){
+        
+        //Given we have a signed in user
+        $this->actingAs(User::factory()->create());
+        //And a task which is created by the user
+        $task = Task::factory()->create(['user_id' => Auth::id()]);
+        $task->title = "Updated Title";
+        //When the user hit's the endpoint to update the task
+        $this->put('tasks/'.$task->id, $task->toArray());
+        //The task should be updated in the database.
+        $this->assertDatabaseHas('tasks',['id'=> $task->id , 'title' => 'Updated Title']);
+        
     }
 }
