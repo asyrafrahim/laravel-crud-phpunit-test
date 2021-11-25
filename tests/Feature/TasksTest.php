@@ -34,4 +34,17 @@ class TasksTest extends TestCase
         $response->assertSee($task->title)
         ->assertSee($task->description);
     }
+    
+    /** @test */
+    public function authenticated_users_can_create_a_new_task()
+    {
+        //Given we have an authenticated user
+        $this->actingAs(Task::factory()->create());
+        //And a task object
+        $task = Task::factory()->make();
+        //When user submits post request to create task endpoint
+        $this->post('tasks/create',$task->toArray());
+        //It gets stored in the database
+        $this->assertEquals(1,Task::all()->count());
+    }
 }
