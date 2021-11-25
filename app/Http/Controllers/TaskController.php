@@ -52,7 +52,7 @@ class TaskController extends Controller
             'description' => $request->get('description'),
             'user_id' => Auth::id()
         ]);
-    
+        
         return redirect()->route('tasks.index');
     }
     
@@ -87,7 +87,8 @@ class TaskController extends Controller
     */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->all());
+        return redirect()->route('tasks.index');
     }
     
     /**
