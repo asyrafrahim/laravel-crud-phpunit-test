@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TasksTest extends TestCase
@@ -39,7 +40,7 @@ class TasksTest extends TestCase
     public function authenticated_users_can_create_a_new_task()
     {
         //Given we have an authenticated user
-        $this->actingAs(Task::factory()->create());
+        $this->actingAs(User::factory()->create());
         //And a task object
         $task = Task::factory()->make();
         //When user submits post request to create task endpoint
