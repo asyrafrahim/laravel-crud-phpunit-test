@@ -17,7 +17,7 @@ class TasksTest extends TestCase
         $task = Task::factory()->create();
         
         //When user visit the tasks page
-        $response = $this->get('/tasks');
+        $response = $this->get('tasks');
         
         //He should be able to read the task
         $response->assertSee($task->title);
@@ -29,7 +29,7 @@ class TasksTest extends TestCase
         //Given we have task in the database
         $task = Task::factory()->create();
         //When user visit the task's URI
-        $response = $this->get('/tasks/'.$task->id);
+        $response = $this->get('tasks/'.$task->id);
         //He can see the task details
         $response->assertSee($task->title)
         ->assertSee($task->description);
