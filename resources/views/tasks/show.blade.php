@@ -17,6 +17,11 @@
             <div class='mt-3'>
                 @can('update', $task)
                 <a href="/tasks/{{$task->id}}/edit" class="btn btn-primary">Edit Task</a>
+                <form style="float:right" method="POST" action="/tasks/{{$task->id}}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
                 @endcan
             </div>
             
