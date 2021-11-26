@@ -69,7 +69,7 @@ class TasksTest extends TestCase
         $task = Task::factory()->make(['title' => null]);
         
         $this->post('/tasks/create',$task->toArray())
-        ->assertStatus(405);
+        ->assertSessionHasErrors('title');
     }
     
     /** @test */
@@ -80,7 +80,7 @@ class TasksTest extends TestCase
         $task = Task::factory()->make(['description' => null]);
         
         $this->post('/tasks/create',$task->toArray())
-        ->assertStatus(405);
+        ->assertSessionHasErrors('description');
     }
     
     /** @test */
