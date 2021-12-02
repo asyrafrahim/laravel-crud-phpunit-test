@@ -75,6 +75,8 @@ class TaskController extends Controller
     */
     public function edit(Task $task)
     {
+        $this->authorize('update', $task);
+
         return view('tasks.edit',compact('task'));
     }
     
