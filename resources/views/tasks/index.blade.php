@@ -2,14 +2,20 @@
 
 @section('content')
     <div class="container">
+        
         <div class="row justify-content-center">
+            
             <div class="col-md-8">
+                <div style="float:right">
+                    <a href="/tasks/create" class="btn btn-primary mr-auto">Add New Task</a>
+                </div>
                 <div class="page-header">
                     <h2>All Tasks</h2>
                 </div>
+                
                 @foreach($tasks as $task)
                 <div class="card">
-                    <div class="card-header">{{$task->title}}</div>
+                    <div class="card-header"><a href="/tasks/{{$task->id}}">{{$task->title}}</a></div>
 
                     <div class="card-body">
                         {{$task->description}}
