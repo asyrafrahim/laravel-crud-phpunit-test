@@ -36,6 +36,7 @@
                         <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                         </li>
+                        
                         <li class="nav-item {{ request()->is('tasks') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('tasks.index') }}">{{ __('Tasks') }}</a>
                         </li>
